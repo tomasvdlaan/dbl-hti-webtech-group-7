@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="./timer.js"></script>
+  <title>Pomedoro</title>
+</head>
+
+<body>
+  <h1 id="timerDisplay">Timer</h1>
+  <button onclick="pomedoro()">start</button>
+  <div id="timeoutOverlay">
+    <h1 id="timeoutTimerDisplay">00:05</h1>
+  </div>
+</body>
+
+</html>
+
+<style>
+  #timeoutOverlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background-color: #00000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    transition: all .5s ease;
+  }
+
+  #timeoutOverlay.active {
+    display: flex;
+    background-color: #0000007f;
+  }
+
+  #timeoutTimerDisplay {
+    font-size: 10rem;
+    color: #ffffff;
+  }
+
+  .warning {
+    color: orange;
+  }
+</style>
