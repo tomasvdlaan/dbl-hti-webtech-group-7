@@ -21,7 +21,7 @@ onDisconnect = (event) => {
 
 async function connect() {
   port = await navigator.serial.requestPort({
-    // filters: [{ usbVendorId: 4292 }],
+    filters: [{ usbVendorId: 4292 }, { usbVendorId: 6790 }],
   });
   await port.open({ baudRate: 9600 });
 
