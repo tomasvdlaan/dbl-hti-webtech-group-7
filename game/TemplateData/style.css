@@ -80,3 +80,7 @@ body {
   padding: 10px;
   display: none;
 }
+.key.active {
+  filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(200deg)
+    brightness(118%) contrast(119%);
+}

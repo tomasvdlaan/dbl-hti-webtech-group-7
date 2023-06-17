@@ -25,14 +25,17 @@ async function connectDevice() {
 async function serialLoop() {
   while (serialHandler.connected) {
     cmd = await serialHandler.read();
-    console.log(cmd);
     if (cmd[0] == "/") {
       switch (cmd[1]) {
         case "k":
-          emulateKeyPress(cmd[2]);
+          try {
+            emulateKeyPress(cmd[2]);
+          } catch (err) {
+            console.log(err)
+          }
           break;
         case "m":
-          cl(cmd.slice(2));
+          console.log(cmd.slice(2));
           break;
       }
     }

@@ -3,6 +3,7 @@
  *  Key press simulation
  *
  *************************/
+const delay = 100;
 let KeysPressed = {};
 var keyboardEvent = document.createEvent("KeyboardEvent");
 var initMethod =
@@ -16,10 +17,10 @@ function emulateKeyPress(key) {
     delete KeysPressed[key];
   } else simulateKeyDown(key);
 
-  KeysPressed[c] = setTimeout(() => {
+  KeysPressed[key] = setTimeout(() => {
     simulateKeyUp(key);
     delete KeysPressed[key];
-  }, 500);
+  }, delay);
 }
 
 function simulateKeyDown(c) {
@@ -28,6 +29,7 @@ function simulateKeyDown(c) {
     code: "Key" + c.toUpperCase(),
   });
   document.dispatchEvent(event);
+  // console.log("Pressing " + c)
 }
 
 function simulateKeyUp(c) {
@@ -36,10 +38,11 @@ function simulateKeyUp(c) {
     code: "Key" + c.toUpperCase(),
   });
   document.dispatchEvent(event);
+  // console.log("Releasing " + c)
 }
 
 // Key listeners
-addEventListener("keydown", (e) => {
+document.addEventListener("keydown", (e) => {
   switch (e.key) {
     case "a":
       document.getElementById("keyLeft").classList.add("active");
@@ -54,7 +57,7 @@ addEventListener("keydown", (e) => {
       break;
   }
 });
-addEventListener("keyup", (e) => {
+document.addEventListener("keyup", (e) => {
   switch (e.key) {
     case "a":
       document.getElementById("keyLeft").classList.remove("active");

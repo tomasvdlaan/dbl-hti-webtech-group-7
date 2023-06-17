@@ -25,27 +25,45 @@ function startWorkTimer() {
     {
       time: workTimeSelector / 60 / 5,
       callback: () => {
-        document.getElementById("timerDisplay").classList.remove("btn-success");
-        document.getElementById("timerDisplay").classList.remove("btn-danger");
-        document.getElementById("timerDisplay").classList.add("btn-warning");
+        document
+          .getElementById("timerDisplay")
+          .classList.remove("btn-outline-success");
+        document
+          .getElementById("timerDisplay")
+          .classList.remove("btn-outline-danger");
+        document
+          .getElementById("timerDisplay")
+          .classList.add("btn-outline-warning");
         showTimeOut();
       },
     },
     {
       time: workTimeSelector / 60 / 10,
       callback: () => {
-        document.getElementById("timerDisplay").classList.remove("btn-warning");
-        document.getElementById("timerDisplay").classList.remove("btn-success");
-        document.getElementById("timerDisplay").classList.add("btn-danger");
+        document
+          .getElementById("timerDisplay")
+          .classList.remove("btn-outline-warning");
+        document
+          .getElementById("timerDisplay")
+          .classList.remove("btn-outline-success");
+        document
+          .getElementById("timerDisplay")
+          .classList.add("btn-outline-danger");
         showTimeOut();
       },
     },
     {
       time: 0,
       callback: () => {
-        document.getElementById("timerDisplay").classList.remove("btn-warning");
-        document.getElementById("timerDisplay").classList.remove("btn-danger");
-        document.getElementById("timerDisplay").classList.add("btn-success");
+        document
+          .getElementById("timerDisplay")
+          .classList.remove("btn-outline-warning");
+        document
+          .getElementById("timerDisplay")
+          .classList.remove("btn-outline-danger");
+        document
+          .getElementById("timerDisplay")
+          .classList.add("btn-outline-success");
         startBreakTimer();
       },
     },
