@@ -955,13 +955,13 @@ Blockly.Arduino["p_down"] = function (block) {
 
 Blockly.Arduino["p_left"] = function (block) {
   // TODO: Assemble Arduino into code variable.
-  var code = 'Serial.print("a");';
+  var code = 'Serial.println"a");';
   return code;
 };
 
 Blockly.Arduino["p_right"] = function (block) {
   // TODO: Assemble Arduino into code variable.
-  var code = 'Serial.print("d");';
+  var code = 'Serial.println"d");';
   return code;
 };
 
@@ -1044,21 +1044,21 @@ Blockly.Arduino["on_death"] = function (block) {
 Blockly.Arduino["p_move_right"] = function (block) {
   // TODO: Assemble JavaScript into code variable.
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
-  var code = `Serial.print("/kd\\n");\n`;
+  var code = `Serial.println"/kd\\n");\n`;
   return code;
 };
 
 Blockly.Arduino["p_move_left"] = function (block) {
   // TODO: Assemble JavaScript into code variable.
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
-  var code = `Serial.print("/ka\\n");\n`;
+  var code = `Serial.println"/ka\\n");\n`;
   return code;
 };
 
 Blockly.Arduino["p_move_up"] = function (block) {
   // TODO: Assemble JavaScript into code variable.
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
-  var code = `Serial.print("/kw\\n");\n`;
+  var code = `Serial.println"/kw\\n");\n`;
   return code;
 };
 
@@ -1121,7 +1121,7 @@ Blockly.Arduino["alert"] = function (block) {
     Blockly.Arduino.ORDER_ATOMIC
   ).replaceAll('"', "");
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
-  var code = `Serial.print("/a${value_alert_value}\\n");\n`;
+  var code = `Serial.s"/a${value_alert_value}\\n");\n`;
   return code;
 };
 
