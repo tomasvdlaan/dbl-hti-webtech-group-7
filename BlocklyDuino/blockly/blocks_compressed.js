@@ -3192,165 +3192,194 @@ Blockly.Blocks["p_score"] = {
   },
 };
 
-Blockly.Blocks['joystick_x'] = {
-  init: function() {
+Blockly.Blocks["joystick_x"] = {
+  init: function () {
     this.appendValueInput("value")
-        .setCheck("Number")
-        .appendField("If joystick x")
-        .appendField(new Blockly.FieldDropdown([["greater",">"], ["smaller","<"], ["equal","="]]), "IDK")
-        .appendField("than");
-    this.appendStatementInput("Code")
-        .setCheck(null)
-        .appendField("then");
+      .setCheck("Number")
+      .appendField("If joystick x")
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["greater", ">"],
+          ["smaller", "<"],
+          ["equal", "="],
+        ]),
+        "IDK"
+      )
+      .appendField("than");
+    this.appendStatementInput("Code").setCheck(null).appendField("then");
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-Blockly.Blocks['joystick_y'] = {
-  init: function() {
+Blockly.Blocks["joystick_y"] = {
+  init: function () {
     this.appendValueInput("value")
-        .setCheck("Number")
-        .appendField("If joystick y")
-        .appendField(new Blockly.FieldDropdown([["greater",">"], ["smaller","<"], ["equal","="]]), "IDK")
-        .appendField("than");
-    this.appendStatementInput("Code")
-        .setCheck(null)
-        .appendField("then");
+      .setCheck("Number")
+      .appendField("If joystick y")
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["greater", ">"],
+          ["smaller", "<"],
+          ["equal", "="],
+        ]),
+        "IDK"
+      )
+      .appendField("than");
+    this.appendStatementInput("Code").setCheck(null).appendField("then");
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
 // Proper blocks
-Blockly.Blocks['on_level_change'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("If the game level changes");
-    this.appendStatementInput("on_level_change_callback")
-        .setCheck(null);
+Blockly.Blocks["on_level_change"] = {
+  init: function () {
+    this.appendDummyInput().appendField("If the game level changes");
+    this.appendStatementInput("on_level_change_callback").setCheck(null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-Blockly.Blocks['on_score_change'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("If the game score changes");
-    this.appendStatementInput("on_score_change_callback")
-        .setCheck(null);
+Blockly.Blocks["on_score_change"] = {
+  init: function () {
+    this.appendDummyInput().appendField("If the game score changes");
+    this.appendStatementInput("on_score_change_callback").setCheck(null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-Blockly.Blocks['on_death'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("If the player dies");
-    this.appendStatementInput("on_death_callback")
-        .setCheck(null);
+Blockly.Blocks["on_death"] = {
+  init: function () {
+    this.appendDummyInput().appendField("If the player dies");
+    this.appendStatementInput("on_death_callback").setCheck(null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-Blockly.Blocks['p_move_right'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Move the player right");
+Blockly.Blocks["p_move_right"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Move the player right");
     this.setColour(230);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-Blockly.Blocks['p_move_left'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Move the player left");
+Blockly.Blocks["p_move_left"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Move the player left");
     this.setColour(230);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-Blockly.Blocks['p_move_up'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Move the player up");
+Blockly.Blocks["p_move_up"] = {
+  init: function () {
+    this.appendDummyInput().appendField("Move the player up");
     this.setColour(230);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-Blockly.Blocks['joystick_x'] = {
-  init: function() {
+Blockly.Blocks["joystick_x"] = {
+  init: function () {
     this.appendValueInput("joystick_x_value")
-        .setCheck("Number")
-        .appendField("If the joystick x position is")
-        .appendField(new Blockly.FieldDropdown([["greater than",">"], ["smaller than","<"], ["equal to","=="]]), "joystick_x_operator");
+      .setCheck("Number")
+      .appendField("If the joystick x position is")
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["greater than", ">"],
+          ["smaller than", "<"],
+          ["equal to", "=="],
+        ]),
+        "joystick_x_operator"
+      );
     this.appendStatementInput("joystick_x_callback")
-        .setCheck(null)
-        .appendField("do");
+      .setCheck(null)
+      .appendField("do");
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-Blockly.Blocks['joystick_y'] = {
-  init: function() {
+Blockly.Blocks["joystick_y"] = {
+  init: function () {
     this.appendValueInput("joystick_y_value")
-        .setCheck("Number")
-        .appendField("If the joystick y position is")
-        .appendField(new Blockly.FieldDropdown([["greater than",">"], ["smaller than","<"], ["equal to","=="]]), "joystick_y_operator");
+      .setCheck("Number")
+      .appendField("If the joystick y position is")
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["greater than", ">"],
+          ["smaller than", "<"],
+          ["equal to", "=="],
+        ]),
+        "joystick_y_operator"
+      );
     this.appendStatementInput("joystick_y_callback")
-        .setCheck(null)
-        .appendField("do");
+      .setCheck(null)
+      .appendField("do");
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };
 
-Blockly.Blocks['control_led'] = {
-  init: function() {
+Blockly.Blocks["control_led"] = {
+  init: function () {
     this.appendDummyInput()
-        .appendField("Turn")
-        .appendField(new Blockly.FieldDropdown([["Green LED 1","1"], ["Green LED 2","2"], ["Orange LED 1","3"], ["option","4"]]), "control_led_pin")
-        .appendField(new Blockly.FieldDropdown([["on","HIGH"], ["off","LOW"]]), "control_led_state");
+      .appendField("Turn")
+      .appendField(
+        new Blockly.FieldDropdown(this.generateOptions),
+        "control_led_pin"
+      )
+      .appendField(
+        new Blockly.FieldDropdown([
+          ["on", "HIGH"],
+          ["off", "LOW"],
+        ]),
+        "control_led_state"
+      );
     this.setColour(230);
 
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
+
+  generateOptions: function () {
+    var options = defaultOutputs.map((e) => [e.title, e.pin]);
+    return options;
+  },
 };
 
-Blockly.Blocks['alert'] = {
-  init: function() {
+Blockly.Blocks["alert"] = {
+  init: function () {
     this.appendValueInput("alert_value")
-        .setCheck("String")
-        .appendField("Alert");
+      .setCheck("String")
+      .appendField("Alert");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(230);
- this.setTooltip("");
- this.setHelpUrl("");
-  }
+    this.setTooltip("");
+    this.setHelpUrl("");
+  },
 };

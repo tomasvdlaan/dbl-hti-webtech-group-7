@@ -32,7 +32,18 @@
       <img src="./images/left_key.svg" style="width:3rem;height:3rem" class="key" id="keyLeft">
       <img src="./images/up_key.svg" style="width:3rem;height:3rem" class="key" id="keyUp">
       <img src="./images/right_key.svg" style="width:3rem;height:3rem" class="key" id="keyRight">
-      <div class="ml-auto">
+      <div class="mx-auto">
+        <button class="btn btn-outline-secondary" onclick="serialHandler.write('death\n')">
+          Simulate player death
+        </button>
+        <button class="btn btn-outline-secondary" onclick="serialHandler.write('score_change\n')">
+          Simulate score change
+        </button>
+        <button class="btn btn-outline-secondary" onclick="serialHandler.write('level_change\n')">
+          Simulate level change
+        </button>
+      </div>
+      <div>
         <button type="button" class="btn btn-danger" onclick="connectDevice()" id="portButton">Connect
           device</button>
       </div>

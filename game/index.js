@@ -25,19 +25,23 @@ async function connectDevice() {
 async function serialLoop() {
   while (serialHandler.connected) {
     cmd = await serialHandler.read();
-    if (cmd[0] == "/") {
+    if (cmd[0] == "/")
       switch (cmd[1]) {
         case "k":
           try {
             emulateKeyPress(cmd[2]);
           } catch (err) {
-            console.log(err)
+            console.log(err);
           }
           break;
         case "m":
           console.log(cmd.slice(2));
           break;
       }
-    }
+    else console.log(`Unknown command: ${JSON.stringify(cmd)}`);
   }
+}
+
+async function die() {
+  serialHandler.write("death");
 }

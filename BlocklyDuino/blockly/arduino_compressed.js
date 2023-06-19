@@ -88,7 +88,11 @@ Blockly.Arduino.finish = function (a) {
   for (f in Blockly.Arduino.serial_read_)
     g.push(Blockly.Arduino.serial_read_[f]);
 
-  a = "void loop() \n{\n" + (g.length ? "  readLoop();\n" : "") + a + "}";
+  a =
+    "void loop() \n{\n" +
+    (g.length ? "  if(Serial.available())\n{\nreadLoop();\n}\n" : "") +
+    a +
+    "}";
   var b = [],
     c = [],
     d;
@@ -112,7 +116,7 @@ Blockly.Arduino.finish = function (a) {
   if (g.length)
     code += (
       "\n\nvoid readLoop() \n{\n  String command = Serial.readString();\n  " +
-      g.join("\n").replaceAll("\n","\n  ") +
+      g.join("\n").replaceAll("\n", "\n  ") +
       "\n}"
     )
       .replace(/\n\n+/g, "\n\n")
@@ -996,88 +1000,126 @@ Blockly.Arduino["serial_listen"] = function (block) {
 // };
 
 // Proper coding
-Blockly.Arduino['on_level_change'] = function(block) {
-  var statements_on_level_change_callback = Blockly.Arduino.statementToCode(block, 'on_level_change_callback');
+Blockly.Arduino["on_level_change"] = function (block) {
+  var statements_on_level_change_callback = Blockly.Arduino.statementToCode(
+    block,
+    "on_level_change_callback"
+  );
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
   Blockly.Arduino.serial_read_["level_change"] =
-    'if(command == "level_change")\n{\n' + statements_on_level_change_callback + "}";
+    'if(command == "level_change\n")\n{\n' +
+    statements_on_level_change_callback +
+    "}";
   // TODO: Assemble JavaScript into code variable.
-  var code = '';
+  var code = "";
   return code;
 };
-Blockly.Arduino['on_score_change'] = function(block) {
-  var statements_on_score_change_callback = Blockly.Arduino.statementToCode(block, 'on_score_change_callback');
+Blockly.Arduino["on_score_change"] = function (block) {
+  var statements_on_score_change_callback = Blockly.Arduino.statementToCode(
+    block,
+    "on_score_change_callback"
+  );
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
   Blockly.Arduino.serial_read_["score_change"] =
-    'if(command == "score_change")\n{\n' + statements_on_score_change_callback + "}";
+    'if(command == "score_change\n")\n{\n' +
+    statements_on_score_change_callback +
+    "}";
   // TODO: Assemble JavaScript into code variable.
-  var code = '';
+  var code = "";
   return code;
 };
-Blockly.Arduino['on_death'] = function(block) {
-  var statements_on_death_callback = Blockly.Arduino.statementToCode(block, 'on_death_callback');
+Blockly.Arduino["on_death"] = function (block) {
+  var statements_on_death_callback = Blockly.Arduino.statementToCode(
+    block,
+    "on_death_callback"
+  );
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
-  Blockly.Arduino.serial_read_["death"] =
+  Blockly.Arduino.serial_read_["death\n"] =
     'if(command == "death")\n{\n' + statements_on_death_callback + "}";
-  var code = '';
+  var code = "";
   return code;
 };
 
-Blockly.Arduino['p_move_right'] = function(block) {
+Blockly.Arduino["p_move_right"] = function (block) {
   // TODO: Assemble JavaScript into code variable.
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
   var code = `Serial.print("/kd\\n");\n`;
   return code;
 };
 
-Blockly.Arduino['p_move_left'] = function(block) {
+Blockly.Arduino["p_move_left"] = function (block) {
   // TODO: Assemble JavaScript into code variable.
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
   var code = `Serial.print("/ka\\n");\n`;
   return code;
 };
 
-Blockly.Arduino['p_move_up'] = function(block) {
+Blockly.Arduino["p_move_up"] = function (block) {
   // TODO: Assemble JavaScript into code variable.
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
   var code = `Serial.print("/kw\\n");\n`;
   return code;
 };
 
-Blockly.Arduino['joystick_x'] = function(block) {
-  var dropdown_joystick_x_operator = block.getFieldValue('joystick_x_operator');
-  var value_joystick_x_value = Blockly.Arduino.valueToCode(block, 'joystick_x_value', Blockly.Arduino.ORDER_ATOMIC);
-  var statements_joystick_x_callback = Blockly.Arduino.statementToCode(block, 'joystick_x_callback');
-  Blockly.Arduino.definitions_["joystick_x"] = "int joystick_x_offset, joystick_x;";
-  Blockly.Arduino.setups_["joystick_x_input"] = "pinMode(A0, INPUT);";
-  Blockly.Arduino.setups_["joystick_x_offset"] = "joystick_x_offset = analogRead(A0);";
-  var code = `joystick_x = analogRead(A0) - joystick_x_offset;\nif(joystick_x ${dropdown_joystick_x_operator} ${value_joystick_x_value})\n{\n${statements_joystick_x_callback}}\n`;
+Blockly.Arduino["joystick_x"] = function (block) {
+  var dropdown_joystick_x_operator = block.getFieldValue("joystick_x_operator");
+  var value_joystick_x_value = Blockly.Arduino.valueToCode(
+    block,
+    "joystick_x_value",
+    Blockly.Arduino.ORDER_ATOMIC
+  );
+  var statements_joystick_x_callback = Blockly.Arduino.statementToCode(
+    block,
+    "joystick_x_callback"
+  );
+  var pin = defaultInputs.find((e) => e.id == "joystick_x").pin || "A0";
+  Blockly.Arduino.definitions_["joystick_x"] =
+    "int joystick_x_offset, joystick_x;";
+  Blockly.Arduino.setups_["joystick_x_input"] = "pinMode(" + pin + ", INPUT);";
+  Blockly.Arduino.setups_["joystick_x_offset"] =
+    "joystick_x_offset = analogRead(" + pin + ");";
+  var code = `joystick_x = analogRead(${pin}) - joystick_x_offset;\nif(joystick_x ${dropdown_joystick_x_operator} ${value_joystick_x_value})\n{\n${statements_joystick_x_callback}}\n`;
   return code;
 };
 
-Blockly.Arduino['joystick_y'] = function(block) {
-  var dropdown_joystick_y_operator = block.getFieldValue('joystick_y_operator');
-  var value_joystick_y_value = Blockly.Arduino.valueToCode(block, 'joystick_y_value', Blockly.Arduino.ORDER_ATOMIC);
-  var statements_joystick_y_callback = Blockly.Arduino.statementToCode(block, 'joystick_y_callback');
-  Blockly.Arduino.definitions_["joystick_y"] = "int joystick_y_offset, joystick_y;";
-  Blockly.Arduino.setups_["joystick_y_input"] = "pinMode(A1, INPUT);";
-  Blockly.Arduino.setups_["joystick_y_offset"] = "joystick_y_offset = analogRead(A1);";
-  var code = `joystick_y = analogRead(A1) - joystick_y_offset;\nif(joystick_y ${dropdown_joystick_y_operator} ${value_joystick_y_value})\n{\n${statements_joystick_y_callback}}\n`;
+Blockly.Arduino["joystick_y"] = function (block) {
+  var dropdown_joystick_y_operator = block.getFieldValue("joystick_y_operator");
+  var value_joystick_y_value = Blockly.Arduino.valueToCode(
+    block,
+    "joystick_y_value",
+    Blockly.Arduino.ORDER_ATOMIC
+  );
+  var statements_joystick_y_callback = Blockly.Arduino.statementToCode(
+    block,
+    "joystick_y_callback"
+  );
+  var pin = defaultInputs.find((e) => e.id == "joystick_y").pin || "A1";
+  Blockly.Arduino.definitions_["joystick_y"] =
+    "int joystick_y_offset, joystick_y;";
+  Blockly.Arduino.setups_["joystick_y_input"] = "pinMode(" + pin + ", INPUT);";
+  Blockly.Arduino.setups_["joystick_y_offset"] =
+    "joystick_y_offset = analogRead(" + pin + ");";
+  var code = `joystick_y = analogRead(${pin}) - joystick_y_offset;\nif(joystick_y ${dropdown_joystick_y_operator} ${value_joystick_y_value})\n{\n${statements_joystick_y_callback}}\n`;
   return code;
 };
 
-
-Blockly.Arduino['control_led'] = function(block) {
-  var dropdown_control_led_pin = block.getFieldValue('control_led_pin');
-  var dropdown_control_led_state = block.getFieldValue('control_led_state');
-  Blockly.Arduino.setups_[`led_${dropdown_control_led_pin}`] = `pinMode(${dropdown_control_led_pin}, OUTPUT);`;
+Blockly.Arduino["control_led"] = function (block) {
+  var dropdown_control_led_pin = block.getFieldValue("control_led_pin");
+  var dropdown_control_led_state = block.getFieldValue("control_led_state");
+  Blockly.Arduino.setups_[
+    `led_${dropdown_control_led_pin}`
+  ] = `pinMode(${dropdown_control_led_pin}, OUTPUT);`;
   var code = `digitalWrite(${dropdown_control_led_pin}, ${dropdown_control_led_state});\n`;
   return code;
 };
 
-Blockly.Arduino['alert'] = function(block) {
-  var value_alert_value = Blockly.Arduino.valueToCode(block, 'alert_value', Blockly.Arduino.ORDER_ATOMIC).replaceAll('"',"");
+Blockly.Arduino["alert"] = function (block) {
+  var value_alert_value = Blockly.Arduino.valueToCode(
+    block,
+    "alert_value",
+    Blockly.Arduino.ORDER_ATOMIC
+  ).replaceAll('"', "");
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
   var code = `Serial.print("/a${value_alert_value}\\n");\n`;
   return code;

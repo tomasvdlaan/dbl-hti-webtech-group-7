@@ -3,7 +3,7 @@
  *  Key press simulation
  *
  *************************/
-const delay = 100;
+const delay = 200;
 let KeysPressed = {};
 var keyboardEvent = document.createEvent("KeyboardEvent");
 var initMethod =
