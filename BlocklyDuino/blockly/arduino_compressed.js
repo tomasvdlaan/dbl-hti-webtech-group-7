@@ -1121,7 +1121,7 @@ Blockly.Arduino["alert"] = function (block) {
     Blockly.Arduino.ORDER_ATOMIC
   ).replaceAll('"', "");
   Blockly.Arduino.setups_["setup_serial"] = "Serial.begin(9600);";
-  var code = `Serial.s"/a${value_alert_value}\\n");\n`;
+  var code = `Serial.println"/a${value_alert_value}\\n");\n`;
   return code;
 };
 
