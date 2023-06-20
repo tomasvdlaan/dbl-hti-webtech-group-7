@@ -4,6 +4,9 @@
  *
  *************************/
 const delay = 200;
+
+const unity_object = "Player 1";
+
 let KeysPressed = {};
 var keyboardEvent = document.createEvent("KeyboardEvent");
 var initMethod =
@@ -29,6 +32,8 @@ function simulateKeyDown(c) {
     code: "Key" + c.toUpperCase(),
   });
   document.dispatchEvent(event);
+  document.getElementById("unity-canvas").dispatchEvent(event);
+  gameInstance.SendMessage(unity_object, `key_${c.toLowerCase()}_down`);
   // console.log("Pressing " + c)
 }
 
@@ -38,6 +43,8 @@ function simulateKeyUp(c) {
     code: "Key" + c.toUpperCase(),
   });
   document.dispatchEvent(event);
+  document.getElementById("unity-canvas").dispatchEvent(event);
+  gameInstance.SendMessage(unity_object, `key_${c.toLowerCase()}_up`);
   // console.log("Releasing " + c)
 }
 

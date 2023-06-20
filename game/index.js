@@ -16,10 +16,12 @@ navigator.serial.addEventListener("disconnect", (event) => {
 
 async function connectDevice() {
   await serialHandler.init();
-  button = document.getElementById("portButton");
-  button.classList = ["btn btn-outline-success"];
-  button.textContent = "Arduino connected";
-  serialLoop();
+  if (serialHandler.connected) {
+    button = document.getElementById("portButton");
+    button.classList = ["btn btn-outline-success"];
+    button.textContent = "Arduino connected";
+    serialLoop();
+  }
 }
 
 async function serialLoop() {
@@ -43,5 +45,13 @@ async function serialLoop() {
 }
 
 async function die() {
-  serialHandler.write("death");
+  serialHandler.write("death\n");
+}
+
+async function score_change() {
+  serialHandler.write("score_change\n");
+}
+
+async function level_change() {
+  serialHandler.write("level_change\n");
 }

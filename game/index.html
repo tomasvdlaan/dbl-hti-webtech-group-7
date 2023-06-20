@@ -29,17 +29,20 @@
 
   <footer class="navbar fixed-bottom bg-light">
     <div class="container-fluid">
-      <img src="./images/left_key.svg" style="width:3rem;height:3rem" class="key" id="keyLeft">
-      <img src="./images/up_key.svg" style="width:3rem;height:3rem" class="key" id="keyUp">
-      <img src="./images/right_key.svg" style="width:3rem;height:3rem" class="key" id="keyRight">
+      <img src="./images/left_key.svg" style="width:3rem;height:3rem" class="key" id="keyLeft"
+        onmousedown="simulateKeyDown('a')" onmouseup="simulateKeyUp('a')">
+      <img src="./images/up_key.svg" style="width:3rem;height:3rem" class="key" id="keyUp"
+        onmousedown="simulateKeyDown('w')" onmouseup="simulateKeyUp('w')">
+      <img src="./images/right_key.svg" style="width:3rem;height:3rem" class="key" id="keyRight"
+        onmousedown="simulateKeyDown('d')" onmouseup="simulateKeyUp('d')">
       <div class="mx-auto">
-        <button class="btn btn-outline-secondary" onclick="serialHandler.write('death\n')">
+        <button class="btn btn-outline-secondary" onclick="die()">
           Simulate player death
         </button>
-        <button class="btn btn-outline-secondary" onclick="serialHandler.write('score_change\n')">
+        <button class="btn btn-outline-secondary" onclick="score_change()">
           Simulate score change
         </button>
-        <button class="btn btn-outline-secondary" onclick="serialHandler.write('level_change\n')">
+        <button class="btn btn-outline-secondary" onclick="level_change()">
           Simulate level change
         </button>
       </div>
@@ -94,11 +97,11 @@
     }
 
     var buildUrl = "Build";
-    var loaderUrl = buildUrl + "/Build 01-06.loader.js";
+    var loaderUrl = buildUrl + "/Build 20-06.loader.js";
     var config = {
-      dataUrl: buildUrl + "/Build 01-06.data.gz",
-      frameworkUrl: buildUrl + "/Build 01-06.framework.js.gz",
-      codeUrl: buildUrl + "/Build 01-06.wasm.gz",
+      dataUrl: buildUrl + "/Build 20-06.data.gz",
+      frameworkUrl: buildUrl + "/Build 20-06.framework.js.gz",
+      codeUrl: buildUrl + "/Build 20-06.wasm.gz",
       streamingAssetsUrl: "StreamingAssets",
       companyName: "DefaultCompany",
       productName: "2IOA0 2023",
@@ -138,11 +141,13 @@
     loadingBar.style.display = "block";
 
     var script = document.createElement("script");
+    var gameInstance = null;
     script.src = loaderUrl;
     script.onload = () => {
       createUnityInstance(canvas, config, (progress) => {
         progressBarFull.style.width = 100 * progress + "%";
       }).then((unityInstance) => {
+        gameInstance = unityInstance;
         loadingBar.style.display = "none";
         // fullscreenButton.onclick = () => {
         //   unityInstance.SetFullscreen(1);
